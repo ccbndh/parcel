@@ -1,0 +1,25 @@
+version: '2'
+services:
+ db:
+   image: postgres:9.6.1
+ rabbitmq:
+   image: rabbitmq:3.6.5-management
+   ports:
+    - "15672:15672"
+ web:
+   build: .
+   command: python manage.py runserver 0.0.0.0:8000
+   volumes:
+     - .:/code
+   ports:
+     - "8000:8000"
+   depends_on:
+     - db
+     - rabbitmq
+ worker:
+   build: .
+   command: celery -A parcel worker -l info
+   volumes:
+     - .:/code
+   depends_on:
+     - rabbitmq
