@@ -127,6 +127,7 @@ STATIC_URL = '/static/'
 
 # Celery
 CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq//'
+CELERY_RESULT_BACKEND = 'rpc://'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
