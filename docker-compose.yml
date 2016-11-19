@@ -2,6 +2,8 @@ version: '2'
 services:
  db:
    image: postgres:9.6.1
+   ports:
+    - "54322:5432"
  rabbitmq:
    image: rabbitmq:3.6.5-management
    ports:
