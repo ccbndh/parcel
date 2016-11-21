@@ -2,18 +2,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './frontend/index.js',
+  entry: './index.js',
 
   output: {
-    filename: 'static/bundle.js',
-    publicPath: ''
+    path: 'dist',
+    filename: '/bundle.js',
   },
 
   plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, '/frontend/index.html'),
+            template: path.join(__dirname, '/index.html'),
             hash: true,
-            filename: 'static/index.html',
+            filename: 'index.html',
             inject: 'body'
         }),
     ],
