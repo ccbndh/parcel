@@ -34,8 +34,6 @@ services:
    depends_on:
     - api
  nginx:
-   restart: always
-   stdin_open: false
    image: nginx:latest
    ports:
     - "80:80"
