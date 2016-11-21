@@ -25,3 +25,14 @@ services:
      - .:/code
    depends_on:
      - rabbitmq
+ nginx:
+   restart: always
+   build: ./nginx/
+   ports:
+    - "80:80"
+   volumes:
+    - /www/public
+   volumes_from:
+    - web
+   depends_on:
+    - web
