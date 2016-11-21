@@ -19,15 +19,15 @@ services:
      - db
      - rabbitmq
  worker:
-   build: .
+   image: parcel_api:latest
    command: celery -A parcel worker -l info
    volumes:
      - .:/code
    depends_on:
-     - rabbitmq
+     - api
  frontend:
    image: node:6.9.1
-   command: bash -c "while true; do echo hello world; sleep 1; done"
+   command: bash -c "while true; do sleep 1; done"
    working_dir: /code/frontend
    volumes_from:
     - api
