@@ -24,5 +24,6 @@ pids
 # webpack
 static/
 node_modules/
+frontend/dist/
 
 docker-compose.yml
