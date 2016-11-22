@@ -87,14 +87,14 @@ var Shipment = React.createClass({
     render: function () {
         var parcelId = this.props.params.parcelId.trim().toUpperCase();
         $.ajax({
-            url: "/api/v1/task/",
+            url: "http://127.0.0.1:8000/api/v1/task/",
             dataType: 'json',
             type: 'POST',
             data: {"parcel_id": parcelId},
             success: function (task) {
                 (function poll() {
                     $.ajax({
-                        url: "/api/v1/task/?task_id=" + task.task_id,
+                        url: "http://127.0.0.1:8000/api/v1/task/?task_id=" + task.task_id,
                         type: "GET",
                         dataType: "json",
                         success: function (events) {
