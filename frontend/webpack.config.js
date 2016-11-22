@@ -1,13 +1,26 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const VENDOR = [
+    'history',
+    'react',
+    'react-dom',
+    'react-router',
+    'jquery',
+];
+
 module.exports = {
-  entry: './index.js',
+  entry: {
+    app: './index.js',
+    vendor: VENDOR,
+  },
 
   output: {
-    path: 'dist',
-    filename: '/bundle.js',
-  },
+        filename: '[name].[hash].js',
+        path: 'dist',
+        publicPath: '/'
+    },
 
   plugins: [
         new HtmlWebpackPlugin({
@@ -16,6 +29,11 @@ module.exports = {
             filename: 'index.html',
             inject: 'body'
         }),
+        new webpack.ProvidePlugin({
+            '$': 'jquery',
+            'jQuery': 'jquery',
+            'window.jQuery': 'jquery'
+        }),
     ],
 
   module: {
@@ -23,4 +41,4 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?presets[]=es2015&presets[]=react' }
     ]
   }
-}
+};
